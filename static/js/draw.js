@@ -50,7 +50,7 @@ function enabledraw(){
   var padID = clientVars.padId;
 
   if($("#draw").length === 0){ // If it's not available already then draw it
-    $("#editorcontainer").prepend("<div id=draw><iframe id='drawEmbed' src='//"+draw_host+"/d/"+padID+"?authorName="+authorName+"&authorColor="+authorColor+"' width='100%' height='100%' style='border:none' frameborder='0' scrolling='no'></iframe></div>");
+    $("#editorcontainer").append("<div id=draw><iframe id='drawEmbed' src='//"+draw_host+"/d/"+padID+"?authorName="+authorName+"&authorColor="+authorColor+"' width='100%' height='100%' style='border:none;bottom:0px' frameborder='0' scrolling='no'></iframe></div>");
   }
   clientVars.ep_draw.enabled = true;
   showdraw();
@@ -65,6 +65,7 @@ function showdraw(){
     $("#draw").hover(function(){
       clearTimeout($(this).data('timeout'));
       $("#draw").animate({"width":"100%", "height": "100%"});;
+      $("#drawEmbed").animate({"width":"100%", "height": "100%"});;
       clientVars.ep_draw.fullscreen = true;
     }, function(){
       var t = setTimeout(function() { // Dont zoom out right away, wait a while
